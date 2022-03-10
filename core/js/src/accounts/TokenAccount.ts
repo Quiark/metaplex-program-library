@@ -2,16 +2,15 @@ import { ERROR_INVALID_ACCOUNT_DATA, ERROR_INVALID_OWNER } from '../errors';
 import { AnyPublicKey } from '../types';
 import { Account } from './Account';
 import {
-  AccountInfo as TokenAccountInfo,
   AccountLayout,
   TOKEN_PROGRAM_ID,
   u64,
 } from '@solana/spl-token';
-import { AccountInfo, Connection, PublicKey } from '@solana/web3.js';
+import { Connection, PublicKey } from '@solana/web3.js';
 import { Buffer } from 'buffer';
 
-export class TokenAccount extends Account<TokenAccountInfo> {
-  constructor(pubkey: AnyPublicKey, info: AccountInfo<Buffer>) {
+export class TokenAccount extends Account<any> {
+  constructor(pubkey: AnyPublicKey, info) {
     super(pubkey, info);
 
     if (!this.assertOwner(TOKEN_PROGRAM_ID)) {
